@@ -1,25 +1,19 @@
-function getWeather(){
-    ("https://api.open-meteo.com/v1/forecast?latitude=-5.4292&longitude=105.2611&current_weather=true")
-    
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      console.log("DATA:", data);
+fetch("https://api.open-meteo.com/v1/forecast?latitude=-6.9&longitude=107.6&current_weather=true")
+  .then(res => res.json())
+  .then(data => {
+    const temp = data.current_weather.temperature;
+    const code = data.current_weather.weathercode;
 
-      const tempEl = document.getElementById("temp");
+    document.getElementById("temp").textContent = temp + "°C";
+    document.getElementById("desc").textContent = getWeatherText(code);
+  });
 
-      if (!data.current_weather) {
-        tempEl.textContent = "No data";
-        return;
-      }
-
-      const temp = data.current_weather.temperature;
-      tempEl.textContent = temp + "°C";
-    })
-    .catch(err => {
-      console.log("ERROR:", err);
-      document.getElementById("temp").textContent = "Offline";
-    });
+function getWeatherText(code) {
+  if (code === 0) return "Cerah ☀️";
+  if (code <= 3) return "Berawan ☁️";
+  if (code >= 61 && code <= 65) return "Hujan 🌧️";
+  if (code >= 95) return "Badai ⛈️";
+  return "Cuaca biasa 🌤️";
 }
 
-getWeather();
+setInterval(getWeather, 600000);
