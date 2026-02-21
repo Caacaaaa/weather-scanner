@@ -1,0 +1,20 @@
+{
+  "name": "Weather Laut",
+  "short_name": "Cuaca",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#4facfe",
+  "theme_color": "#4facfe",
+  "icons": [
+    {
+      "src": "assets/iconawan.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/iconawan.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
